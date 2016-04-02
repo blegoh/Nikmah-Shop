@@ -47,18 +47,33 @@ class Products
         $respon = Curl::to('http://divishoes.com/main/katalog_product_ready')->get();
         $pos = strpos($respon, '<div id="product-list">');
         $respon = substr($respon, $pos);
+        $respon = $this->clearMetaCharacter($respon);
         $pos = strpos($respon, '</div>');
         $respon = substr($respon, 0, $pos);
         $pos = strpos($respon,'<li>');
         $respon = substr($respon, $pos);
-        $pos = strpos($respon, '<div class="clearfix">');
-        $respon = trim(substr($respon, 0, $pos));
-        $respon = substr($respon, 0, strlen($respon)-5);
-        $respons = explode('</li>', $respon);
+        $respon = str_replace('<div class="clearfix">','',$respon);
+        echo $respon;
+        $respons = explode('</li><li>', $respon);
+        //print_r($respons);
         return $respons;
     }
 
-    public function getAll()
+    /**
+     * @param $string
+     * membersihkan hasil curl agar mudah di explode
+     * @return mixed
+     */
+    private function clearMetaCharacter($string)
+    {
+        $string = str_replace(array("\r", "\n", "\t", "\v"),'',$string);
+        $string = str_replace(array("  ", "   ", "    ", "     ","      ","       "),'',$string);
+        $string = str_replace("> <","><",$string);
+        str_replace_last('> <','><',$string);
+        return $string;
+    }
+
+    public  function all()
     {
         return $this->collection;
     }
