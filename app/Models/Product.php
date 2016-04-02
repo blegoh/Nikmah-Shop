@@ -9,10 +9,6 @@
 namespace App\Models;
 
 
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
-use JsonSerializable;
-
 class Product extends Model
 {
 
