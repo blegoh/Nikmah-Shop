@@ -9,7 +9,11 @@
 namespace App\Models;
 
 
-class Product
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+use JsonSerializable;
+
+class Product extends Model
 {
 
     private $name;
@@ -18,6 +22,11 @@ class Product
     private $price;
     private $photo;
     private $link;
+
+    public function __construct()
+    {
+        $this->attributes = ['name','description','weight','price','photo','link'];
+    }
 
     public function __set($name, $value)
     {
@@ -32,4 +41,6 @@ class Product
             return $this->$name;
         }
     }
+    
+    
 }
