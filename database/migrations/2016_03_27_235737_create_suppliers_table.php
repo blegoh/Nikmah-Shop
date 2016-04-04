@@ -16,7 +16,8 @@ class CreateSuppliersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('supplier_id');
             $table->string('name');
-            $table->string('alamat');
+            $table->string('address');
+            $table->string('phone');
         });
     }
 
