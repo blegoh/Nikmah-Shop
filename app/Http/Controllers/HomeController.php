@@ -26,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home',['categories' => $this->categories]);
+        return view('home',[
+            'categories' => $this->categories,
+            'suppliers' => $this->suppliers
+        ]);
     }
 }
