@@ -16,54 +16,14 @@
 				</div>
 				<!-- Categories Links Ends -->
 				<!-- Special Products Starts -->
-				<h3 class="side-heading">Specials</h3>
+				<h3 class="side-heading">Suppliers</h3>
 				<ul class="side-products-list">
-					<!-- Special Product #1 Starts -->
-					<li class="clearfix">
-						<img src="/images/product-images/spl-product-img1.jpg" alt="Special product" class="img-responsive" />
-						<h5><a href="#">Olympus Digital Camera</a></h5>
-						<div class="price">
-							<span class="price-new">$199.50</span>
-							<span class="price-old">$249.50</span>
-						</div>
-					</li>
-					<!-- Special Product #1 Ends -->
-					<!-- Special Product #2 Starts -->
-					<li class="clearfix">
-						<img src="/images/product-images/spl-product-img2.jpg" alt="Special product" class="img-responsive" />
-						<h5><a href="#">Olympus Digital Camera</a></h5>
-						<div class="price">
-							<span class="price-new">$599.50</span>
-						</div>
-					</li>
-					<!-- Special Product #2 Ends -->
-					<!-- Special Product #3 Starts -->
-					<li class="clearfix">
-						<img src="/images/product-images/spl-product-img3.jpg" alt="Special product" class="img-responsive" />
-						<h5><a href="#">Olympus Digital Camera</a></h5>
-						<div class="price">
-							<span class="price-new">$199.50</span>
-							<span class="price-old">$249.50</span>
-						</div>
-					</li>
-					<!-- Special Product #3 Ends -->
-					<!-- Special Product #4 Starts -->
-					<li class="clearfix">
-						<img src="/images/product-images/spl-product-img1.jpg" alt="Special product" class="img-responsive" />
-						<h5><a href="#">Olympus Digital Camera</a></h5>
-						<div class="price">
-							<span class="price-new">$199.50</span>
-						</div>
-					</li>
-					<!-- Special Product #4 Ends -->
-					<!-- Special Product #5 Starts -->
-					<li class="clearfix">
-						<img src="/images/product-images/spl-product-img2.jpg" alt="Special product" class="img-responsive" />
-						<h5><a href="#">Olympus Digital Camera</a></h5>
-						<div class="price">
-							<span class="price-new">$599.50</span>
-						</div>
-					</li>
+					@foreach($suppliers as $supplier)
+						<a href="#" class="list-group-item">
+							<i class="fa fa-chevron-right"></i>
+							{{$supplier->name}}
+						</a>
+					@endforeach
 					<!-- Special Product #5 Ends -->
 				</ul>
 				<!-- Special Products Ends -->
