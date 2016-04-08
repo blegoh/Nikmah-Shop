@@ -53,9 +53,7 @@ class Products
         $pos = strpos($respon,'<li>');
         $respon = substr($respon, $pos);
         $respon = str_replace('<div class="clearfix">','',$respon);
-        echo $respon;
         $respons = explode('</li><li>', $respon);
-        //print_r($respons);
         return $respons;
     }
 
