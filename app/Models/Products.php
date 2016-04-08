@@ -67,7 +67,6 @@ class Products
         $string = str_replace(array("\r", "\n", "\t", "\v"),'',$string);
         $string = str_replace(array("  ", "   ", "    ", "     ","      ","       "),'',$string);
         $string = str_replace("> <","><",$string);
-        str_replace_last('> <','><',$string);
         return $string;
     }
 
