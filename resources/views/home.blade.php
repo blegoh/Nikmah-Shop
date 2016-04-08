@@ -66,206 +66,31 @@
 						<div class="col-xs-12">
 							<!-- Product Carousel Starts -->
 							<div id="owl-product" class="owl-carousel">
-								<!-- Product #1 Starts -->
-								<div class="item">
-									<div class="product-col">
-										<div class="image">
-											<img src="/images/product-images/1.jpg" alt="product" class="img-responsive" />
-										</div>
-										<div class="caption">
-											<h4><a href="product.html">Digital Electro Goods</a></h4>
-											<div class="description">
-												We are so lucky living in such a wonderful time. Our almost unlimited ...
+								@foreach($products as $product)
+									<div class="item">
+										<div class="product-col">
+											<div class="image">
+												<img src="{{$product->photo}}" alt="product" class="img-responsive" />
 											</div>
-											<div class="price">
-												<span class="price-new">$199.50</span>
-												<span class="price-old">$249.50</span>
-											</div>
-											<div class="cart-button">
-												<button type="button" class="btn btn-cart">
-													Add to cart
-													<i class="fa fa-shopping-cart"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Product #1 Ends -->
-								<!-- Product #2 Starts -->
-								<div class="item">
-									<div class="product-col">
-										<div class="image">
-											<img src="/images/product-images/2.jpg" alt="product" class="img-responsive" />
-										</div>
-										<div class="caption">
-											<h4><a href="product.html">Digital Electro Goods</a></h4>
-											<div class="description">
-												We are so lucky living in such a wonderful time. Our almost unlimited ...
-											</div>
-											<div class="price">
-												<span class="price-new">$199.50</span>
-												<span class="price-old">$249.50</span>
-											</div>
-											<div class="cart-button">
-												<button type="button" class="btn btn-cart">
-													Add to cart
-													<i class="fa fa-shopping-cart"></i>
-												</button>
+											<div class="caption">
+												<h4><a href="product.html">{{$product->name}}</a></h4>
+												<div class="description">
+													We are so lucky living in such a wonderful time. Our almost unlimited ...
+												</div>
+												<div class="price">
+													<span class="price-new">IDR {{$product->price}}</span>
+												</div>
+												<div class="cart-button">
+													<button type="button" class="btn btn-cart">
+														Add to cart
+														<i class="fa fa-shopping-cart"></i>
+													</button>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<!-- Product #2 Ends -->
-								<!-- Product #3 Starts -->
-								<div class="item">
-									<div class="product-col">
-										<div class="image">
-											<img src="/images/product-images/3.jpg" alt="product" class="img-responsive" />
-										</div>
-										<div class="caption">
-											<h4><a href="product.html">Digital Electro Goods</a></h4>
-											<div class="description">
-												We are so lucky living in such a wonderful time. Our almost unlimited ...
-											</div>
-											<div class="price">
-												<span class="price-new">$199.50</span>
-												<span class="price-old">$249.50</span>
-											</div>
-											<div class="cart-button">
-												<button type="button" class="btn btn-cart">
-													Add to cart
-													<i class="fa fa-shopping-cart"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Product #3 Ends -->
-								<!-- Product #4 Starts -->
-								<div class="item">
-									<div class="product-col">
-										<div class="image">
-											<img src="/images/product-images/4.jpg" alt="product" class="img-responsive" />
-										</div>
-										<div class="caption">
-											<h4><a href="product.html">Digital Electro Goods</a></h4>
-											<div class="description">
-												We are so lucky living in such a wonderful time. Our almost unlimited ...
-											</div>
-											<div class="price">
-												<span class="price-new">$199.50</span>
-												<span class="price-old">$249.50</span>
-											</div>
-											<div class="cart-button">
-												<button type="button" class="btn btn-cart">
-													Add to cart
-													<i class="fa fa-shopping-cart"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Product #4 Ends -->
-								<!-- Product #5 Starts -->
-								<div class="item">
-									<div class="product-col">
-										<div class="image">
-											<img src="/images/product-images/5.jpg" alt="product" class="img-responsive" />
-										</div>
-										<div class="caption">
-											<h4><a href="product.html">Digital Electro Goods</a></h4>
-											<div class="description">
-												We are so lucky living in such a wonderful time. Our almost unlimited ...
-											</div>
-											<div class="price">
-												<span class="price-new">$199.50</span>
-												<span class="price-old">$249.50</span>
-											</div>
-											<div class="cart-button">
-												<button type="button" class="btn btn-cart">
-													Add to cart
-													<i class="fa fa-shopping-cart"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Product #5 Ends -->
-								<!-- Product #6 Starts -->
-								<div class="item">
-									<div class="product-col">
-										<div class="image">
-											<img src="/images/product-images/6.jpg" alt="product" class="img-responsive" />
-										</div>
-										<div class="caption">
-											<h4><a href="product.html">Digital Electro Goods</a></h4>
-											<div class="description">
-												We are so lucky living in such a wonderful time. Our almost unlimited ...
-											</div>
-											<div class="price">
-												<span class="price-new">$199.50</span>
-												<span class="price-old">$249.50</span>
-											</div>
-											<div class="cart-button">
-												<button type="button" class="btn btn-cart">
-													Add to cart
-													<i class="fa fa-shopping-cart"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Product #6 Ends -->
-								<!-- Product #7 Starts -->
-								<div class="item">
-									<div class="product-col">
-										<div class="image">
-											<img src="/images/product-images/7.jpg" alt="product" class="img-responsive" />
-										</div>
-										<div class="caption">
-											<h4><a href="product.html">Digital Electro Goods</a></h4>
-											<div class="description">
-												We are so lucky living in such a wonderful time. Our almost unlimited ...
-											</div>
-											<div class="price">
-												<span class="price-new">$199.50</span>
-												<span class="price-old">$249.50</span>
-											</div>
-											<div class="cart-button">
-												<button type="button" class="btn btn-cart">
-													Add to cart
-													<i class="fa fa-shopping-cart"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Product #7 Ends -->
-								<!-- Product #8 Starts -->
-								<div class="item">
-									<div class="product-col">
-										<div class="image">
-											<img src="/images/product-images/8.jpg" alt="product" class="img-responsive" />
-										</div>
-										<div class="caption">
-											<h4><a href="product.html">Digital Electro Goods</a></h4>
-											<div class="description">
-												We are so lucky living in such a wonderful time. Our almost unlimited ...
-											</div>
-											<div class="price">
-												<span class="price-new">$199.50</span>
-												<span class="price-old">$249.50</span>
-											</div>
-											<div class="cart-button">
-												<button type="button" class="btn btn-cart">
-													Add to cart
-													<i class="fa fa-shopping-cart"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Product #8 Ends -->
+								@endforeach
+								
 							</div>
 							<!-- Product Carousel Ends -->
 						</div>
