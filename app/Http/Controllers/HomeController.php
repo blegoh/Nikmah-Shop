@@ -12,25 +12,24 @@ use App\Http\Requests;
 class HomeController extends Controller
 {
 
-    private $categories;
-    private $suppliers;
-
-    public function __construct()
-    {
-        $this->categories = Category::all();
-        $this->suppliers = Supplier::all();
-    }
-
     /**
+     * Halaman utama
      * @return mixed
      */
     public function index()
     {
         $products = new Products();
         return view('home',[
-            'categories' => $this->categories,
-            'suppliers' => $this->suppliers,
             'products' => $products->all()
         ]);
+    }
+
+    /**
+     * Halaman about
+     * @return mixed
+     */
+    public function about()
+    {
+        return view('about');
     }
 }
