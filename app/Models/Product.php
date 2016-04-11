@@ -77,7 +77,7 @@ class Product extends Model
         return $product;
     }
 
-    private function getCurl($url)
+    private static function getCurl($url)
     {
         $respon = Curl::to($url)->get();
         $pos = strpos($respon, '<!-- Main -->');
