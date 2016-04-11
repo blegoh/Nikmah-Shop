@@ -284,66 +284,10 @@
             <!-- Navbar Cat collapse Starts -->
             <div class="collapse navbar-collapse navbar-cat-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="category-list.html">Digital Cameras</a></li>
-                    <li class="dropdown">
-                        <a href="category-list.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">
-                            Sound Devices
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a tabindex="-1" href="#">Music System</a></li>
-                            <li><a tabindex="-1" href="#">DTS</a></li>
-                            <li><a tabindex="-1" href="#">Home Theater</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="category-list.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">Televisions </a>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-inner">
-                                <ul class="list-unstyled">
-                                    <li class="dropdown-header">Sub Category</li>
-                                    <li><a tabindex="-1" href="#">item 1</a></li>
-                                    <li><a tabindex="-1" href="#">item 2</a></li>
-                                    <li><a tabindex="-1" href="#">item 3</a></li>
-                                </ul>
-                                <ul class="list-unstyled">
-                                    <li class="dropdown-header">Sub Category</li>
-                                    <li><a tabindex="-1" href="#">item 1</a></li>
-                                    <li><a tabindex="-1" href="#">item 2</a></li>
-                                    <li><a tabindex="-1" href="#">item 3</a></li>
-                                </ul>
-                                <ul class="list-unstyled">
-                                    <li class="dropdown-header">Sub Category</li>
-                                    <li><a tabindex="-1" href="#">item 1</a></li>
-                                    <li><a tabindex="-1" href="#">item 2</a></li>
-                                    <li><a tabindex="-1" href="#">item 3</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="category-list.html">Computers </a></li>
-                    <li><a href="category-list.html">Washing Machines</a></li>
-                    <li><a href="category-list.html">Accessories </a></li>
-                    <li><a href="category-list.html">Mobile Phones  </a></li>
-                    <li class="dropdown">
-                        <a href="category-list.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">
-                            Pages
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a tabindex="-1" href="index.html">Home</a></li>
-                            <li><a tabindex="-1" href="about.html">About</a></li>
-                            <li><a tabindex="-1" href="category-list.html">Category List</a></li>
-                            <li><a tabindex="-1" href="category-grid.html">Category Grid</a></li>
-                            <li><a tabindex="-1" href="product.html">Product</a></li>
-                            <li><a tabindex="-1" href="product-full.html">Product Full Width</a></li>
-                            <li><a tabindex="-1" href="cart.html">Cart</a></li>
-                            <li><a tabindex="-1" href="login.html">Login</a></li>
-                            <li><a tabindex="-1" href="compare.html">Compare Products</a></li>
-                            <li><a tabindex="-1" href="typography.html">Typography</a></li>
-                            <li><a tabindex="-1" href="register.html">Register</a></li>
-                            <li><a tabindex="-1" href="contact.html">Contact</a></li>
-                            <li><a tabindex="-1" href="404.html">404</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/products">All Products</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
                 </ul>
             </div>
             <!-- Navbar Cat collapse Ends -->
