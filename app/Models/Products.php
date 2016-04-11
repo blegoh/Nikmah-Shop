@@ -19,7 +19,12 @@ class Products
     public function __construct()
     {
         $this->collection = new Collection();
-        $respons = $this->getCurl();
+        $this->parse($this->getCurl('http://divishoes.com/main/katalog_product_ready'));
+        $this->parse($this->getCurl('http://ratuwedges.com/main/katalog_product_ready/ready'));
+    }
+
+    private function parse($respons)
+    {
         foreach ($respons as $respon){
             $product = new Product();
             $awal = strpos($respon,'<h5>')+4;
@@ -42,12 +47,12 @@ class Products
     /**
      * @return mixed
      */
-    private function getCurl()
+    private function getCurl($url)
     {
-        $respon = Curl::to('http://divishoes.com/main/katalog_product_ready')->get();
+        $respon = Curl::to($url)->get();
         $pos = strpos($respon, '<div id="product-list">');
         $respon = substr($respon, $pos);
-        $respon = $this->clearMetaCharacter($respon);
+        $respon = self::clearMetaCharacter($respon);
         $pos = strpos($respon, '</div>');
         $respon = substr($respon, 0, $pos);
         $pos = strpos($respon,'<li>');
@@ -62,7 +67,7 @@ class Products
      * membersihkan hasil curl agar mudah di explode
      * @return mixed
      */
-    private function clearMetaCharacter($string)
+    public static function clearMetaCharacter($string)
     {
         $string = str_replace(array("\r", "\n", "\t", "\v"),'',$string);
         $string = str_replace(array("  ", "   ", "    ", "     ","      ","       "),'',$string);
