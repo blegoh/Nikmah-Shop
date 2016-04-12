@@ -13,6 +13,6 @@ class ProductController extends Controller
     public function detail($link)
     {
         $product = Product::find($link);
-        return $product;
+        return view('product',['product' => $product]);
     }
 }
