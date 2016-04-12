@@ -11,6 +11,7 @@ namespace App\Models;
 
 use Illuminate\Support\Collection;
 use Ixudra\Curl\Facades\Curl;
+use Crypt;
 
 class Products
 {
@@ -37,9 +38,9 @@ class Products
             $awal = strpos($respon,"<h5 class='price'>IDR ")+21;
             $akhir = strpos($respon,".00 </h5>");
             $product->price = substr($respon,$awal,$akhir - $awal);
-            $awal = strpos($respon,"<a href='")+8;
+            $awal = strpos($respon,"<a href='")+9;
             $akhir = strpos($respon,"'><img");
-            $product->link = substr($respon,$awal,$akhir - $awal);
+            $product->link = Crypt::encrypt(substr($respon,$awal,$akhir - $awal));
             $this->collection->push($product);
         }
     }
