@@ -10,6 +10,11 @@ use App\Http\Requests;
 class ProductController extends Controller
 {
 
+    /**
+     * Menampilkan detail dari sebuah product
+     * @param $link
+     * @return mixed
+     */
     public function detail($link)
     {
         $product = Product::find($link);
