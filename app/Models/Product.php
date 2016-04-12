@@ -10,6 +10,7 @@ namespace App\Models;
 
 
 use Ixudra\Curl\Facades\Curl;
+use Crypt;
 
 class Product extends Model
 {
@@ -58,7 +59,7 @@ class Product extends Model
     {
         $product = new Product();
         $product->link = $link;
-        $respon = self::getCurl($link);
+        $respon = self::getCurl(Crypt::decrypt($link));
         $awal = strpos($respon,'<h3>')+4;
         $akhir = strpos($respon,'</h3>');
         $product->name = substr($respon,$awal,$akhir - $awal);
