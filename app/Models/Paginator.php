@@ -50,7 +50,7 @@ class Paginator
         }
 
         if ($this->currentPage < $this->total){
-            $render .= '<li><a href="'.$this->path.'/'.($this->currentPage-1).'" aria-label="Next">
+            $render .= '<li><a href="'.$this->path.'/'.($this->currentPage+1).'" aria-label="Next">
 						<span aria-hidden="true">&raquo;</span></a>
 				        </li>';
         }
