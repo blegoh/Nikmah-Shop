@@ -36,11 +36,7 @@ class Paginator
     public function render()
     {
         $render = '<nav><ul class="pager">';
-        if ($this->currentPage > 1){
-            $render .= '<li><a href="'.$this->path.'/'.($this->currentPage-1).'" aria-label="Previous">
-						<span aria-hidden="true">&laquo;</span></a>
-				        </li>';
-        }
+        $render .= $this->getPrev();
 
         $start = ($this->currentPage - 2 > 0) ? $this->currentPage - 2 : 1;
         $end = ($this->currentPage + 2 <= $this->total) ? $this->currentPage + 2 : $this->total;
@@ -48,14 +44,30 @@ class Paginator
         for ($i=$start;$i<=$end;$i++){
             $render .= '<li><a href="'.$this->path.'/'.$i.'">'.$i.'</a></li>';
         }
-
-        if ($this->currentPage < $this->total){
-            $render .= '<li><a href="'.$this->path.'/'.($this->currentPage+1).'" aria-label="Next">
-						<span aria-hidden="true">&raquo;</span></a>
-				        </li>';
-        }
-
+        $render .= $this->getNext();
         $render .= '</ul></nav>';
         return $render;
+    }
+
+    private function getPrev()
+    {
+        if ($this->currentPage > 1){
+            return '<li><a href="'.$this->path.'/'.($this->currentPage-1).'" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span></a>
+				        </li>';
+        }else{
+            return '';
+        }
+    }
+
+    private function getNext()
+    {
+        if ($this->currentPage < $this->total){
+            return '<li><a href="'.$this->path.'/'.($this->currentPage+1).'" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span></a>
+				        </li>';
+        }else{
+            return '';
+        }
     }
 }
