@@ -16,12 +16,18 @@ use Crypt;
 class Products
 {
     private $collection;
+    private $site1 = 'http://divishoes.com/main/katalog_product_ready';
+    private $site2 = 'http://ratuwedges.com/main/katalog_product_ready/ready';
 
-    public function __construct()
+    public function __construct($page = 1)
     {
         $this->collection = new Collection();
-        $this->parse($this->getCurl('http://divishoes.com/main/katalog_product_ready'));
-        $this->parse($this->getCurl('http://ratuwedges.com/main/katalog_product_ready/ready'));
+        $site1 = ($page == 1) ? $this->site1 : $this->site1.'/'.(($page -1)*12);
+        $site2 = ($page == 1) ? $this->site2 : $this->site2.'/'.(($page -1)*12);
+        if($page <= $this->getPageCount($this->site1))
+            $this->parse($this->getCurl($site1));
+        if($page <= $this->getPageCount($this->site2))
+            $this->parse($this->getCurl($site2));
     }
 
     private function parse($respons)
@@ -61,6 +67,21 @@ class Products
         $respon = str_replace('<div class="clearfix">','',$respon);
         $respons = explode('</li><li>', $respon);
         return $respons;
+    }
+
+    private function getPageCount($site)
+    {
+        $respon = Curl::to($site)->get();
+        $awal = strrpos($respon, $site.'/')+ strlen($site)+1;
+        $akhir = strpos($respon, '">Last');
+        $page = substr($respon,$awal,$akhir - $awal)/12+1;
+        return $page;
+    }
+
+    public function getPage(){
+        $page1 = $this->getPageCount($this->site1);
+        $page2 = $this->getPageCount($this->site2);
+        return ($page1 > $page2) ? $page1 : $page2;
     }
 
     /**
