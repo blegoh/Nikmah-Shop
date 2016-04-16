@@ -12,3 +12,15 @@
 */
 
 Route::get('/', 'HomeController@index');
+
+Route::get('/about', 'HomeController@about');
+
+Route::get('/product/{link}','ProductController@detail');
+
+Route::get('/products','ProductController@all');
+
+Route::get('/products/{page}','ProductController@all');
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
