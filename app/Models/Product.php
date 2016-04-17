@@ -74,7 +74,7 @@ class Product extends Model
         $product->weight = substr($respon,$awal,$akhir - $awal);
         $awal = strpos($respon,'name="price" value="')+20;
         $akhir = strpos($respon,'.00">');
-        $product->price = substr($respon,$awal,$akhir - $awal);
+        $product->price = substr($respon,$awal,$akhir - $awal)+20000;
         return $product;
     }
 

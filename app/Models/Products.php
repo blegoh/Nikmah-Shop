@@ -43,7 +43,7 @@ class Products
             $product->photo = substr($respon,$awal,$akhir - $awal);
             $awal = strpos($respon,"<h5 class='price'>IDR ")+21;
             $akhir = strpos($respon,".00 </h5>");
-            $product->price = substr($respon,$awal,$akhir - $awal);
+            $product->price = substr($respon,$awal,$akhir - $awal) + 20000 ;
             $awal = strpos($respon,"<a href='")+9;
             $akhir = strpos($respon,"'><img");
             $product->link = Crypt::encrypt(substr($respon,$awal,$akhir - $awal));
