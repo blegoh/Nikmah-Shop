@@ -16,8 +16,6 @@ class CreateMembersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('kab_id');
-            $table->foreign('kab_id')->references('id')->on('kabupaten')->onDelete('cascade');
         });
     }
 
