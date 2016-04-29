@@ -12,6 +12,7 @@ class CreateSuppliersTable extends Migration
      */
     public function up()
     {
+        Schema::drop('suppliers');
         Schema::create('suppliers', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('supplier_id');
@@ -29,6 +30,6 @@ class CreateSuppliersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('suppliers');
+        //Schema::drop('suppliers');
     }
 }

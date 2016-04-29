@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,10 @@ class CreateCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::drop('categories');
-        Schema::create('categories', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('category_id');
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name');
-            $table->string('site1');
-            $table->string('site2');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +26,6 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        //Schema::drop('categories');
+        Schema::drop('permissions');
     }
 }
