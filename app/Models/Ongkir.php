@@ -6,23 +6,11 @@ use GuzzleHttp\Client;
 
 class Ongkir
 {
-    /**
-     * @var GuzzleHttp\Client
-     */
-    private static $client;
-
-    /**
-     * Ongkir constructor.
-     */
-    public function __construct()
-    {
-        self::$client = new Client();
-    }
-
 
     public static function provincies()
     {
-        $response = self::$client->request('GET', 'http://api.rajaongkir.com/starter/province',[
+        $client = new Client();
+        $response = $client->request('GET', 'http://api.rajaongkir.com/starter/province',[
             'query' => [
                 'key' => '7cfb344ccb0eff9d6c5dfe721032133e'
             ]
@@ -33,7 +21,8 @@ class Ongkir
 
     public static function cities($province)
     {
-        $response = self::$client->request('GET', 'http://api.rajaongkir.com/starter/city',[
+        $client = new Client();
+        $response = $client->request('GET', 'http://api.rajaongkir.com/starter/city',[
             'query' => [
                 'key' => '7cfb344ccb0eff9d6c5dfe721032133e',
                 'province' => $province
