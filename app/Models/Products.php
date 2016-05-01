@@ -19,9 +19,11 @@ class Products
     private $site1 = 'http://divishoes.com/main/katalog_product_ready';
     private $site2 = 'http://ratuwedges.com/main/katalog_product_ready/ready';
 
-    public function __construct($page = 1)
+    public function __construct($page = 1,$site1='',$site2='')
     {
         $this->collection = new Collection();
+        $this->site1 = ($site1 == '')?$this->site1: $site1;
+        $this->site2 = ($site2 == '')?$this->site1: $site2;
         $site1 = ($page == 1) ? $this->site1 : $this->site1.'/'.(($page -1)*12);
         $site2 = ($page == 1) ? $this->site2 : $this->site2.'/'.(($page -1)*12);
         if($page <= $this->getPageCount($this->site1))

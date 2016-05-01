@@ -8,13 +8,20 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Client;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Kabupaten extends Model
+class Kabupaten
 {
-    protected $table = 'kabupaten';
-    protected $primaryKey = 'id';
-
-    public $timestamps = false;
+    public static function all($province)
+    {
+        $client = new Client();
+        $response = $client->request('GET', 'http://api.rajaongkir.com/starter/city',[
+            'query' => [
+                'key' => '7cfb344ccb0eff9d6c5dfe721032133e',
+                'province' => $province
+            ]
+        ]);
+        $hasil = \GuzzleHttp\json_decode($response->getBody()->getContents());
+        return $hasil->rajaongkir->results;
+    }
 }

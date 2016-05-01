@@ -21,6 +21,7 @@ class Product extends Model
     private $price;
     private $photo;
     private $link;
+    private $varians;
 
     public function __construct()
     {
@@ -75,6 +76,20 @@ class Product extends Model
         $awal = strpos($respon,'name="price" value="')+20;
         $akhir = strpos($respon,'.00">');
         $product->price = substr($respon,$awal,$akhir - $awal)+20000;
+        $needle = '<option selected="selected" value="">-- Select Variant --</option>';
+        $awal = strpos($respon,$needle)+strlen($needle);
+        $akhir = strpos($respon,'</select>');
+        $varians = substr($respon,$awal,$akhir-$awal);
+        $varians = str_replace('</option><option value="',',',$varians);
+        $varians = str_replace('<option value="','',$varians);
+        $varians = str_replace('</option>','',$varians);
+        $varians = explode(',',$varians);
+        $a = [];
+        foreach ($varians as $varian) {
+            $x = substr($varian,strpos($varian,'">')+2);
+            $a[] = $x;
+        }
+        $product->varians = $a;
         return $product;
     }
 
