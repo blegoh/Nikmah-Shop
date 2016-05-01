@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Ongkir;
 use App\Models\Product;
-use App\Models\Provinsi;
 use Cart;
 use Curl;
 use GuzzleHttp\Client;
