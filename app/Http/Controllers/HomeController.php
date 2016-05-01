@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Products;
-use App\Models\Supplier;
-use Illuminate\Http\Request;
+use Auth;
 
 use App\Http\Requests;
 

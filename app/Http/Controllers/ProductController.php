@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Paginator;
 use App\Models\Product;
 use App\Models\Products;
@@ -30,5 +31,16 @@ class ProductController extends Controller
     {
         $product = Product::find($link);
         return view('product',['product' => $product]);
+    }
+
+    public function category($category,$page = 1)
+    {
+        $category = Category::find($category);
+        $products = new Products($page,$category->site1,$category->site2);
+        $paginator = new Paginator($products->getPage(),$page,'/products/category/'.$category->category_id);
+        return view('products',[
+            'products' => $products->all(),
+            'paginator' => $paginator
+        ]);
     }
 }

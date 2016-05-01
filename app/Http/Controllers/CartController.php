@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Provinsi;
 use Cart;
 use Curl;
 use GuzzleHttp\Client;
@@ -12,7 +14,8 @@ class CartController extends Controller
 {
     public function index()
     {
-        return view('cart');
+        $provinces = Provinsi::all();
+        return view('cart',compact('provinces'));
     }
 
     public function add(Request $request){
@@ -28,14 +31,42 @@ class CartController extends Controller
         return back();
     }
 
+    public function update($link,Request $request)
+    {
+        Cart::update([
+            'id'       => $link,
+            'quantity' => $request->input('quantity')
+        ]);
+        return back();
+    }
+
+    public function delete($link)
+    {
+        Cart::remove($link);
+        return back();
+    }
+
+    public function addToCart($link)
+    {
+        $product = Product::find($link);
+        return view('addToCart',compact('product'));
+    }
+
     public function test()
     {
         $client = new Client();
-        $response = $client->request('GET', 'http://api.rajaongkir.com/starter/province',[
-            'query' => [
-                'key' => '621389bc120523f1caafd291afef672b'
+        $response = $client->post('http://api.rajaongkir.com/starter/cost',[
+            'headers' => [
+                'key' => '7cfb344ccb0eff9d6c5dfe721032133e'
+            ],
+            'form_params' => [
+                'origin' => '317',
+                'destination' => '160',
+                'weight' => '1',
+                'courier' => 'jne'
             ]
         ]);
+        return $response;
         $hasil = \GuzzleHttp\json_decode($response->getBody()->getContents());
         print_r($hasil->rajaongkir->results);
     }
