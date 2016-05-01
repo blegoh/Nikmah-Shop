@@ -1,4 +1,7 @@
 @extends('submaster')
+@section('title')
+	Home
+@endsection
 @section('primary-content')
 	<!-- Primary Content Starts -->
 	<div class="col-md-9">
@@ -40,7 +43,7 @@
 						@foreach($products as $product)
 							<div class="item">
 								<div class="product-col">
-									<div class="image">
+									<div class="image nailthumb-container">
 										<img src="{{$product->photo}}" alt="product" class="img-responsive" />
 									</div>
 									<div class="caption">
@@ -52,10 +55,12 @@
 											<span class="price-new">IDR {{$product->price}}</span>
 										</div>
 										<div class="cart-button">
+											<a rel="facebox" href="/cart/addToCart/{{$product->link}}">
 											<button type="button" class="btn btn-cart">
 												Add to cart
 												<i class="fa fa-shopping-cart"></i>
 											</button>
+											</a>
 										</div>
 									</div>
 								</div>
