@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ongkir;
 use App\Models\Product;
 use App\Models\Provinsi;
 use Cart;
@@ -14,7 +15,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        $provinces = Provinsi::all();
+        $provinces = Ongkir::provincies();
         return view('cart',compact('provinces'));
     }
 
