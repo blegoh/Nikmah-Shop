@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Electro Shoppe Stores - Bootstrap 3 Template</title>
+    <title>Nikmah Shoes Stores - @yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -25,6 +25,7 @@
     <link href="/css/owl.carousel.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
+    <link href="/css/facebox.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="/js/ie8-responsive-file-warning.js"></script>
@@ -64,40 +65,9 @@
 										</span>
                                 </a>
                             </li>
+
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-heart hidden-lg hidden-md" title="Wish List"></i>
-										<span class="hidden-sm hidden-xs">
-											Wish List(0)
-										</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-user hidden-lg hidden-md" title="My Account"></i>
-										<span class="hidden-sm hidden-xs">
-											My Account
-										</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="cart.html">
-                                    <i class="fa fa-shopping-cart hidden-lg hidden-md" title="Shopping Cart"></i>
-										<span class="hidden-sm hidden-xs">
-											Shopping Cart
-										</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-crosshairs hidden-lg hidden-md" title="Checkout"></i>
-										<span class="hidden-sm hidden-xs">
-											Checkout
-										</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="register.html">
+                                <a href="/register">
                                     <i class="fa fa-unlock hidden-lg hidden-md" title="Register"></i>
 										<span class="hidden-sm hidden-xs">
 											Register
@@ -105,7 +75,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="login.html">
+                                <a href="/login">
                                     <i class="fa fa-lock hidden-lg hidden-md" title="Login"></i>
 										<span class="hidden-sm hidden-xs">
 											Login
@@ -119,35 +89,21 @@
                 <!-- Currency & Languages Starts -->
                 <div class="col-sm-4 col-xs-12">
                     <div class="pull-right">
-                        <!-- Currency Starts -->
-                        <div class="btn-group">
-                            <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                                Currency
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                            <ul class="pull-right dropdown-menu">
-                                <li><a tabindex="-1" href="#">Pound </a></li>
-                                <li><a tabindex="-1" href="#">US Dollar</a></li>
-                                <li><a tabindex="-1" href="#">Euro</a></li>
-                            </ul>
-                        </div>
-                        <!-- Currency Ends -->
+                        @if( Auth::check() )
                         <!-- Languages Starts -->
                         <div class="btn-group">
                             <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                                Language
+                                {{ Auth::user()->member->name }}
                                 <i class="fa fa-caret-down"></i>
                             </button>
                             <ul class="pull-right dropdown-menu">
                                 <li>
-                                    <a tabindex="-1" href="#">English</a>
-                                </li>
-                                <li>
-                                    <a tabindex="-1" href="#">French</a>
+                                    <a tabindex="-1" href="/logout">Logout</a>
                                 </li>
                             </ul>
                         </div>
                         <!-- Languages Ends -->
+                        @endif
                     </div>
                 </div>
                 <!-- Currency & Languages Ends -->
@@ -186,50 +142,33 @@
                         <button type="button" data-toggle="dropdown" class="btn btn-block btn-lg dropdown-toggle">
                             <i class="fa fa-shopping-cart"></i>
                             <span class="hidden-md">Cart:</span>
-                            <span id="cart-total">2 item(s) - $340.00</span>
+                            <span id="cart-total">{{Cart::count()}} item(s) - {{Cart::getTotal()}}</span>
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <ul class="dropdown-menu pull-right">
                             <li>
                                 <table class="table hcart">
-                                    <tr>
-                                        <td class="text-center">
-                                            <a href="product.html">
-                                                <img src="/images/product-images/hcart-thumb1.jpg" alt="image" title="image" class="img-thumbnail img-responsive" />
-                                            </a>
-                                        </td>
-                                        <td class="text-left">
-                                            <a href="product-full.html">
-                                                Seeds
-                                            </a>
-                                        </td>
-                                        <td class="text-right">x 1</td>
-                                        <td class="text-right">$120.68</td>
-                                        <td class="text-center">
-                                            <a href="#">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                            <a href="product.html">
-                                                <img src="/images/product-images/hcart-thumb2.jpg" alt="image" title="image" class="img-thumbnail img-responsive" />
-                                            </a>
-                                        </td>
-                                        <td class="text-left">
-                                            <a href="product-full.html">
-                                                Organic
-                                            </a>
-                                        </td>
-                                        <td class="text-right">x 2</td>
-                                        <td class="text-right">$240.00</td>
-                                        <td class="text-center">
-                                            <a href="#">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach(Cart::getItems() as $item)
+                                        <tr>
+                                            <td class="text-center">
+                                                <a href="product.html">
+                                                    <img src="{{$item->photo}}" width="40px" alt="image" title="image" class="img-thumbnail img-responsive" />
+                                                </a>
+                                            </td>
+                                            <td class="text-left">
+                                                <a href="/product/{{$item->id}}">
+                                                    {{$item->name}}
+                                                </a>
+                                            </td>
+                                            <td class="text-right">x {{$item->quantity}}</td>
+                                            <td class="text-right">{{$item->price}}</td>
+                                            <td class="text-center">
+                                                <a href="#">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </table>
                             </li>
                             <li>
@@ -237,28 +176,14 @@
                                     <tbody>
                                     <tr>
                                         <td class="text-right"><strong>Sub-Total</strong></td>
-                                        <td class="text-left">$1,101.00</td>
+                                        <td class="text-left">{{Cart::getTotal()}}</td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
-                                        <td class="text-left">$4.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right"><strong>VAT (17.5%)</strong></td>
-                                        <td class="text-left">$192.68</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right"><strong>Total</strong></td>
-                                        <td class="text-left">$1,297.68</td>
-                                    </tr>
+
                                     </tbody>
                                 </table>
                                 <p class="text-right btn-block1">
-                                    <a href="cart.html">
+                                    <a href="/cart">
                                         View Cart
-                                    </a>
-                                    <a href="#">
-                                        Checkout
                                     </a>
                                 </p>
                             </li>
@@ -413,6 +338,22 @@
 <script src="/js/bootstrap-hover-dropdown.min.js"></script>
 <script src="/js/jquery.magnific-popup.min.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
+<script src="/js/facebox.js"></script>
+<script src="/js/jquery.nailthumb.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.21/vue.min.js"></script>
 <script src="/js/custom.js"></script>
+<script>
+    jQuery(document).ready(function($) {
+        $('a[rel*=facebox]').facebox();
+        jQuery('.nailthumb-container').nailthumb({
+            width:230,
+            height:230,
+            fitDirection: 'center bottom'
+        });
+    })
+</script>
+<script>
+    @yield('js')
+</script>
 </body>
 </html>
