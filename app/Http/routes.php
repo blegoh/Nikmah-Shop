@@ -21,6 +21,25 @@ Route::get('/products','ProductController@all');
 
 Route::get('/products/{page}','ProductController@all');
 
+Route::get('/products/category/{category}','ProductController@category');
+
+Route::get('/products/category/{category}/{page}','ProductController@category');
+
+Route::get('/cart','CartController@index');
+
+Route::get('/test','CartController@test');
+
+Route::post('/cart/add','CartController@add');
+
+Route::get('/cart/addToCart/{link}','CartController@addToCart');
+
+Route::post('/cart/update/{link}','CartController@update');
+
+Route::get('/cart/delete/{link}','CartController@delete');
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/ajax/kabupaten/{province}','AjaxController@kabupaten');
+
