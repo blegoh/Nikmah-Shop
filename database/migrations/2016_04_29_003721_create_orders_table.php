@@ -15,12 +15,16 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('member_id');
-            $table->date('order_date');
+            $table->string('receiver_name');
+            $table->string('receiver_phone');
+            $table->string('city');
+            $table->date('order_date')->default(\Carbon\Carbon::now());
             $table->integer('ongkir');
             $table->string('ship_address');
-            $table->boolean('isPaid');
-            $table->boolean('isShipped');
+            $table->boolean('isPaid')->default(false);
+            $table->boolean('isShipped')->default(false);
             $table->timestamps();
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
         });
     }
 
