@@ -23,7 +23,7 @@ class Products
     {
         $this->collection = new Collection();
         $this->site1 = ($site1 == '')?$this->site1: $site1;
-        $this->site2 = ($site2 == '')?$this->site1: $site2;
+        $this->site2 = ($site2 == '')?$this->site2: $site2;
         $site1 = ($page == 1) ? $this->site1 : $this->site1.'/'.(($page -1)*12);
         $site2 = ($page == 1) ? $this->site2 : $this->site2.'/'.(($page -1)*12);
         if($page <= $this->getPageCount($this->site1))
