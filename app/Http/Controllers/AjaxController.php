@@ -14,4 +14,10 @@ class AjaxController extends Controller
         $kabs = Ongkir::cities($province);
         return view('ajax.kab', compact('kabs'));
     }
+
+    public function cost($city)
+    {
+        $ongkir = Ongkir::totalOngkir($city);
+        return $ongkir;
+    }
 }
