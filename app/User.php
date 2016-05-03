@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Member;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -12,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email', 'password','member_id'
     ];
 
     /**
@@ -23,4 +24,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function member()
+    {
+        return $this->hasOne(Member::class,'id','member_id');
+    }
+
 }
