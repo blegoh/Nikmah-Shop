@@ -37,9 +37,19 @@ Route::post('/cart/update/{link}','CartController@update');
 
 Route::get('/cart/delete/{link}','CartController@delete');
 
+Route::get('/checkout',function(){
+    return redirect('/cart');
+});
+
+Route::post('/checkout','CartController@checkout');
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
 Route::get('/ajax/kabupaten/{province}','AjaxController@kabupaten');
+
+Route::get('/ajax/cost/{city}','AjaxController@cost');
+
+Route::get('/orders','OrderController@index');
 
