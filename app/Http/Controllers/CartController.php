@@ -3,15 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ongkir;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Cart;
 use Curl;
+use Auth;
+use Crypt;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
 class CartController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => [
+            'checkout'
+        ]]);
+    }
+
     public function index()
     {
         $provinces = Ongkir::provincies();
@@ -62,17 +74,32 @@ class CartController extends Controller
             'form_params' => [
                 'origin' => '317',
                 'destination' => '160',
-                'weight' => '1',
+                'weight' => 2000,
                 'courier' => 'jne'
             ]
         ]);
-        return $response;
         $hasil = \GuzzleHttp\json_decode($response->getBody()->getContents());
-        print_r($hasil->rajaongkir->results);
+        print_r($hasil->rajaongkir->results[0]->costs[1]->cost[0]->value);
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
-        $this->middleware('auth');
+        $order = new Order();
+        $order->member_id = Auth::user()->member->id;
+        $order->receiver_name = $request->input('name');
+        $order->receiver_phone = $request->input('telp');
+        $order->city = $request->input('city');
+        $order->ongkir = Ongkir::totalOngkir($request->input('city'));
+        $order->ship_address = $request->input('alamat');
+        $order->save();
+        foreach (Cart::items() as $item){
+            $detail = new OrderDetail();
+            $detail->product_link = Crypt::decrypt($item->id);
+            $detail->quantity = $item->quantity;
+            $detail->unitPrice = $item->price;
+            $detail->save();
+        }
+        Cart::clear();
+        return redirect('/');
     }
 }
