@@ -53,3 +53,7 @@ Route::get('/ajax/cost/{city}','AjaxController@cost');
 
 Route::get('/orders','OrderController@index');
 
+Route::group(['prefix' => 'member'], function () {
+    Route::get('/','MemberController@index');
+});
+
