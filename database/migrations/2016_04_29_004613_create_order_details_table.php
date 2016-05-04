@@ -16,7 +16,7 @@ class CreateOrderDetailsTable extends Migration
             $table->increments('id');
             $table->string('product_link');
             $table->unsignedInteger('quantity');
-            $table->unsignedInteger('unitPrice');
+            $table->unsignedInteger('unit_price');
             $table->unsignedInteger('weight');
             $table->unsignedInteger('order_id');
             $table->timestamps();
