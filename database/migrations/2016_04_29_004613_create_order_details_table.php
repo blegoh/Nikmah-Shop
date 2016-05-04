@@ -17,7 +17,9 @@ class CreateOrderDetailsTable extends Migration
             $table->string('product_link');
             $table->unsignedInteger('quantity');
             $table->unsignedInteger('unitPrice');
+            $table->unsignedInteger('order_id');
             $table->timestamps();
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 
