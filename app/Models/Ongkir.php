@@ -34,6 +34,19 @@ class Ongkir
         return $hasil->rajaongkir->results;
     }
 
+    public static function city($id)
+    {
+        $client = new Client();
+        $response = $client->request('GET', 'http://api.rajaongkir.com/starter/city',[
+            'query' => [
+                'key' => '7cfb344ccb0eff9d6c5dfe721032133e',
+                'id' => $id
+            ]
+        ]);
+        $hasil = \GuzzleHttp\json_decode($response->getBody()->getContents());
+        return $hasil->rajaongkir->results->city_name;
+    }
+
     /**
      * @param $origin string
      * @param $destination string
