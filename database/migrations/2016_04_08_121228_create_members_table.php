@@ -16,6 +16,10 @@ class CreateMembersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
+            $table->string('phone');
+            $table->string('city');
+            $table->string('address');
+            $table->string('photo')->default('');
         });
     }
 
