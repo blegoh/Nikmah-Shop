@@ -11,10 +11,10 @@
 				<!-- Wrapper For Slides Starts -->
 				<div class="carousel-inner">
 					<div class="item active">
-						<img src="/images/slider-imgs/slide1-img.jpg" alt="Slider" class="img-responsive" />
+						<img src="/images/slider-imgs/slide1-img.png" alt="Slider" class="img-responsive" />
 					</div>
 					<div class="item">
-						<img src="/images/slider-imgs/slide2-img.jpg" alt="Slider" class="img-responsive" />
+						<img src="/images/slider-imgs/slide2-img.png" alt="Slider" class="img-responsive" />
 					</div>
 				</div>
 				<!-- Wrapper For Slides Ends -->
@@ -49,7 +49,7 @@
 									<div class="caption">
 										<h4><a href="/product/{{$product->link}}">{{$product->name}}</a></h4>
 										<div class="description">
-											We are so lucky living in such a wonderful time. Our almost unlimited ...
+
 										</div>
 										<div class="price">
 											<span class="price-new">IDR {{$product->price}}</span>
@@ -81,87 +81,38 @@
 			<!-- Heading Ends -->
 			<!-- Products Row Starts -->
 			<div class="row">
-				<!-- Product #1 Starts -->
-				<div class="col-md-4 col-sm-6">
-					<div class="product-col">
-						<div class="image">
-							<img src="/images/product-images/9.jpg" alt="product" class="img-responsive" />
-						</div>
-						<div class="caption">
-							<h4>
-								<a href="product-full.html">Digital Electro Goods</a>
-							</h4>
-							<div class="description">
-								We are so lucky living in such a wonderful time. Our almost unlimited ...
-							</div>
-							<div class="price">
-								<span class="price-new">$199.50</span>
-								<span class="price-old">$249.50</span>
-							</div>
-							<div class="cart-button">
-								<button type="button" class="btn btn-cart">
-									Add to cart
-									<i class="fa fa-shopping-cart"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Product #1 Ends -->
-				<!-- Product #2 Starts -->
-				<div class="col-md-4 col-sm-6">
-					<div class="product-col">
-						<div class="image">
-							<img src="/images/product-images/10.jpg" alt="product" class="img-responsive" />
-						</div>
-						<div class="caption">
-							<h4>
-								<a href="product-full.html">Digital Electro Goods</a>
-							</h4>
-							<div class="description">
-								We are so lucky living in such a wonderful time. Our almost unlimited ...
-							</div>
-							<div class="price">
-								<span class="price-new">$199.50</span>
-								<span class="price-old">$249.50</span>
-							</div>
-							<div class="cart-button">
-								<button type="button" class="btn btn-cart">
-									Add to cart
-									<i class="fa fa-shopping-cart"></i>
-								</button>
+				<?php $i = 1; ?>
+				@foreach($products as $product)
+					@if($i == 1 || $i == 5 || $i == 10)
+						<div class="col-md-4 col-sm-6">
+							<div class="product-col">
+								<div class="image">
+									<img src="{{ $product->photo }}" alt="product" class="img-responsive" />
+								</div>
+								<div class="caption">
+									<h4>
+										<a href="/product/{{$product->link}}">{{ $product->name }}</a>
+									</h4>
+									<div class="description">
+
+									</div>
+									<div class="price">
+										<span class="price-new">{{$product->price}}</span>
+									</div>
+									<div class="cart-button">
+										<a rel="facebox" href="/cart/addToCart/{{$product->link}}">
+										<button type="button" class="btn btn-cart">
+											Add to cart
+											<i class="fa fa-shopping-cart"></i>
+										</button>
+										</a>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<!-- Product #2 Ends -->
-				<!-- Product #3 Starts -->
-				<div class="col-md-4 col-sm-6">
-					<div class="product-col">
-						<div class="image">
-							<img src="/images/product-images/11.jpg" alt="product" class="img-responsive" />
-						</div>
-						<div class="caption">
-							<h4>
-								<a href="product-full.html">Digital Electro Goods</a>
-							</h4>
-							<div class="description">
-								We are so lucky living in such a wonderful time. Our almost unlimited ...
-							</div>
-							<div class="price">
-								<span class="price-new">$199.50</span>
-								<span class="price-old">$249.50</span>
-							</div>
-							<div class="cart-button">
-								<button type="button" class="btn btn-cart">
-									Add to cart
-									<i class="fa fa-shopping-cart"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Product #3 Ends -->
+					@endif
+					<?php $i++; ?>
+				@endforeach
 			</div>
 			<!-- Products Row Ends -->
 		</section>
