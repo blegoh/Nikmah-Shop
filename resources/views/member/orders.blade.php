@@ -18,7 +18,7 @@
             <tr class="info">
                 <td>{{$order->id}}</td>
                 <td>{{$order->receiver_name}}</td>
-                <td>{{$order->city}}</td>
+                <td>{{$order->city()}}</td>
                 <td>{{$order->order_date}}</td>
                 <td><a href="/order/{{$order->id}}" class="btn btn-info">More</a></td>
             </tr>
