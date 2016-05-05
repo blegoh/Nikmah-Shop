@@ -92,6 +92,8 @@
 	<!-- Shipping Section Starts -->
 		<section class="registration-area">
 			<div class="row">
+				<form action="/checkout" class="form-horizontal" role="form" method="post">
+					{!! csrf_field() !!}
 			<!-- Shipping & Shipment Block Starts -->
 				<div class="col-sm-6">
 				<!-- Shipment Information Block Starts -->
@@ -103,45 +105,45 @@
 						</div>
 						<div class="panel-body">
 						<!-- Form Starts -->
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<label for="inputFname" class="col-sm-3 control-label">Nama Penerima :</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="inputFname" placeholder="Nama Penerima">
-									</div>
+							<!-- Form dipindah ke atas karena submit nya di tombol checkout -->
+							<div class="form-group">
+								<label for="inputFname" class="col-sm-3 control-label">Nama Penerima :</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="name" id="inputFname" placeholder="Nama Penerima">
 								</div>
-								<div class="form-group">
-									<label for="inputPhone" class="col-sm-3 control-label">Telepon/HP :</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="inputPhone" placeholder="Telepon/HP">
-									</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPhone" class="col-sm-3 control-label">Telepon/HP :</label>
+								<div class="col-sm-9">
+									<input type="text" name="telp" class="form-control" id="inputPhone" placeholder="Telepon/HP">
 								</div>
-								<div class="form-group">
-									<label for="inputCountry" class="col-sm-3 control-label">Provinsi :</label>
-									<div class="col-sm-9">
-										<select class="form-control" id="prov">
-											<option value="">- Pilih Provinsi -</option>
-											@foreach($provinces as $province)
-												<option value="{{$province->province_id}}">{{$province->province}}</option>
-											@endforeach
-										</select>
-									</div>
+							</div>
+							<div class="form-group">
+								<label for="inputCountry" class="col-sm-3 control-label">Provinsi :</label>
+								<div class="col-sm-9">
+									<select name="prov" class="form-control" id="prov">
+										<option value="">- Pilih Provinsi -</option>
+										@foreach($provinces as $province)
+											<option value="{{$province->province_id}}">{{$province->province}}</option>
+										@endforeach
+									</select>
 								</div>
-								<div class="form-group">
-									<label for="inputRegion" class="col-sm-3 control-label">Kabupaten/Kota :</label>
-									<div class="col-sm-9">
-										<select class="form-control" id="kab">
-											<option>- Pilih Kabupaten -</option>
-										</select>
-									</div>
+							</div>
+							<div class="form-group">
+								<label for="inputRegion" class="col-sm-3 control-label">Kabupaten/Kota :</label>
+								<div class="col-sm-9">
+									<select name="city" class="form-control" id="kab">
+										<option>- Pilih Kabupaten -</option>
+									</select>
 								</div>
-								<div class="form-group">
-									<label for="inputRegion" class="col-sm-3 control-label">Alamat :</label>
-									<div class="col-sm-9">
-										<textarea class="form-control" rows="5" name="alamat"></textarea>
-									</div>
+							</div>
+							<div class="form-group">
+								<label for="inputRegion" class="col-sm-3 control-label">Alamat :</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" name="alamat"></textarea>
 								</div>
-							</form>
+							</div>
+
 						<!-- Form Ends -->
 						</div>
 					</div>
@@ -162,14 +164,12 @@
 								<dt>Sub Total :</dt>
 								<dd>{{Cart::getTotal()}}</dd>
 								<dt>Ongkir :</dt>
-								<dd>$10.00</dd>
-								<dt>Tax Total :</dt>
-								<dd>$315.00</dd>
+								<dd id="ongkir"></dd>
 							</dl>
 							<hr />
 							<dl class="dl-horizontal total">
 								<dt>Total :</dt>
-								<dd>$325.00</dd>
+								<dd id="total"></dd>
 							</dl>
 							<hr />
 							<div class="text-uppercase clearfix">
@@ -177,15 +177,16 @@
 									<span class="hidden-xs">Continue Shopping</span>
 									<span class="visible-xs">Continue</span>
 								</a>
-								<a href="#" class="btn btn-default pull-right">		
+								<button type="submit" class="btn btn-default pull-right">
 									Checkout
-								</a>
+								</button>
 							</div>
 						</div>
 					</div>
 				<!-- Total Panel Ends -->
 				</div>
 			<!-- Discount & Conditions Blocks Ends -->
+				</form>
 			</div>
 		</section>
 	<!-- Shipping Section Ends -->
@@ -199,6 +200,14 @@
 			url: "/ajax/kabupaten/"+$("#prov").val(),
 		}).done(function(data) {
 			$("#kab").html(data);
+		});
+	});
+	$("#kab").change(function(){
+		$.ajax({
+			url: "/ajax/cost/"+$("#kab").val(),
+		}).done(function(data) {
+			$("#ongkir").html(data);
+			$("#total").html(parseInt(data)+{{Cart::getTotal()}});
 		});
 	});
 @endsection
