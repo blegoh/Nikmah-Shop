@@ -26,5 +26,10 @@ class CategorySeeder extends Seeder
             'site1' => 'http://ratuwedges.com/main/product_category_ready/4/category_ready',
             'site2' => 'http://divishoes.com/main/product_category_ready/8/category_ready'
         ]);
+        \App\Models\Category::create([
+            'name' => 'wedges',
+            'site1' => 'http://ratuwedges.com/main/product_category_ready/2/category_ready',
+            'site2' => 'http://divishoes.com/main/product_category_ready/5/category_ready'
+        ]);
     }
 }
