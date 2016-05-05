@@ -44,7 +44,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/fav-72.png">
     <link rel="apple-touch-icon-precomposed" href="images/fav-57.png">
     <link rel="shortcut icon" href="/images/fav.png">
-
+    <style>
+        @yield('css');
+    </style>
 </head>
 <body>
 <!-- Header Section Starts -->
@@ -57,15 +59,7 @@
                 <div class="col-sm-8 col-xs-12">
                     <div class="header-links">
                         <ul class="nav navbar-nav pull-left">
-                            <li>
-                                <a href="index.html">
-                                    <i class="fa fa-home hidden-lg hidden-md" title="Home"></i>
-										<span class="hidden-sm hidden-xs">
-											Home
-										</span>
-                                </a>
-                            </li>
-
+                            @if(!Auth::check())
                             <li>
                                 <a href="/register">
                                     <i class="fa fa-unlock hidden-lg hidden-md" title="Register"></i>
@@ -82,6 +76,7 @@
 										</span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -97,6 +92,12 @@
                                 <i class="fa fa-caret-down"></i>
                             </button>
                             <ul class="pull-right dropdown-menu">
+                                <li>
+                                    <a tabindex="-1" href="/member">Profile</a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="/order">Order</a>
+                                </li>
                                 <li>
                                     <a tabindex="-1" href="/logout">Logout</a>
                                 </li>
@@ -213,6 +214,8 @@
                     <li><a href="/products">All Products</a></li>
                     <li><a href="/about">About</a></li>
                     <li><a href="/contact">Contact</a></li>
+                    <li><a href="/contact">Panduan</a></li>
+                    
                 </ul>
             </div>
             <!-- Navbar Cat collapse Ends -->
@@ -230,41 +233,6 @@
     <div class="footer-links">
         <!-- Container Starts -->
         <div class="container">
-            <!-- Information Links Starts -->
-            <div class="col-md-2 col-sm-6">
-                <h5>Information</h5>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="#">Delivery Information</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms &amp; Conditions</a></li>
-                </ul>
-            </div>
-            <!-- Information Links Ends -->
-            <!-- My Account Links Starts -->
-            <div class="col-md-2 col-sm-6">
-                <h5>My Account</h5>
-                <ul>
-                    <li><a href="#">My orders</a></li>
-                    <li><a href="#">My merchandise returns</a></li>
-                    <li><a href="#">My credit slips</a></li>
-                    <li><a href="#">My addresses</a></li>
-                    <li><a href="#">My personal info</a></li>
-                </ul>
-            </div>
-            <!-- My Account Links Ends -->
-            <!-- Customer Service Links Starts -->
-            <div class="col-md-2 col-sm-6">
-                <h5>Service</h5>
-                <ul>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="#">Returns</a></li>
-                    <li><a href="#">Site Map</a></li>
-                    <li><a href="#">Affiliates</a></li>
-                    <li><a href="#">Specials</a></li>
-                </ul>
-            </div>
-            <!-- Customer Service Links Ends -->
             <!-- Follow Us Links Starts -->
             <div class="col-md-2 col-sm-6">
                 <h5>Follow Us</h5>
@@ -280,16 +248,16 @@
             <div class="col-md-4 col-sm-12 last">
                 <h5>Contact Us</h5>
                 <ul>
-                    <li>My Company</li>
+                    <li>Nikmah Shoes</li>
                     <li>
-                        1247 LB Nagar Road, Hyderabad, Telangana - 35
+                        Jl Brantas XIV 184 Jember
                     </li>
                     <li>
-                        Email: <a href="#">info@demolink.com</a>
+                        Email: <a href="#">nikmahshoes@gmail.com</a>
                     </li>
                 </ul>
                 <h4 class="lead">
-                    Tel: <span>1(234) 567-9842</span>
+                    Tel: <span>+62 857 8652 5809</span>
                 </h4>
             </div>
             <!-- Contact Us Ends -->
@@ -303,25 +271,22 @@
         <div class="container">
             <!-- Starts -->
             <p class="pull-left">
-                &copy; 2015 Electro Shoppe Stores. Designed By <a href="http://sainathchillapuram.com">Sainath Chillapuram</a>
+                &copy; 2016 Nikmah Shoes.
             </p>
             <!-- Ends -->
             <!-- Payment Gateway Links Starts -->
             <ul class="pull-right list-inline">
                 <li>
-                    <img src="/images/payment-icon/cirrus.png" alt="PaymentGateway" />
+                    <img src="/images/payment-icon/bri.png" width="70px" alt="PaymentGateway" />
                 </li>
                 <li>
-                    <img src="/images/payment-icon/paypal.png" alt="PaymentGateway" />
+                    <img src="/images/payment-icon/bni.png" width="70px" alt="PaymentGateway" />
                 </li>
                 <li>
-                    <img src="/images/payment-icon/visa.png" alt="PaymentGateway" />
+                    <img src="/images/payment-icon/bca.png" width="70px" alt="PaymentGateway" />
                 </li>
                 <li>
-                    <img src="images/payment-icon/mastercard.png" alt="PaymentGateway" />
-                </li>
-                <li>
-                    <img src="/images/payment-icon/americanexpress.png" alt="PaymentGateway" />
+                    <img src="/images/payment-icon/mandiri.png" width="70px" alt="PaymentGateway" />
                 </li>
             </ul>
             <!-- Payment Gateway Links Ends -->
@@ -351,6 +316,14 @@
             fitDirection: 'center bottom'
         });
     })
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 <script>
     @yield('js')
