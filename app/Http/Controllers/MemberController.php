@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
-
-use App\Http\Requests;
 
 class MemberController extends Controller
 {
