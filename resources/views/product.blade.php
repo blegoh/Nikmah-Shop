@@ -9,6 +9,13 @@
 			<li class="active">Product</li>
 		</ol>
 	<!-- Breadcrumb Ends -->
+		<form action="/cart/add" method="post">
+			{!! csrf_field() !!}
+			<input type="hidden" name="link" value="{{$product->link}}" />
+			<input type="hidden" name="name" value="{{$product->name}}" />
+			<input type="hidden" name="weight" value="{{$product->weight}}" />
+			<input type="hidden" name="price" value="{{$product->price}}" />
+			<input type="hidden" name="photo" value="{{$product->photo}}" />
 	<!-- Product Info Starts -->
 		<div class="row product-info">
 		<!-- Left Starts -->
@@ -29,6 +36,16 @@
 					<li>
 						<span>Weight:</span> {{$product->weight}}
 					</li>
+					<li>
+						<span>varians:</span>
+						<div class="form-group">
+							<select class="form-control" id="sel1" name="varian">
+								@foreach($product->varians as $varian)
+									<option>{{$varian}}</option>
+								@endforeach
+							</select>
+						</div>
+					</li>
 				</ul>
 			<!-- Manufacturer Ends -->
 				<hr />
@@ -46,7 +63,7 @@
 						<input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
 					</div>
 					<div class="cart-button button-group">
-						<button type="button" class="btn btn-cart">
+						<button type="submit" class="btn btn-cart">
 							Add to cart
 							<i class="fa fa-shopping-cart"></i>
 						</button>
@@ -58,6 +75,7 @@
 		<!-- Right Ends -->
 		</div>
 	<!-- product Info Ends -->
+		</form>
 	<!-- Product Description Starts -->
 		<div class="product-info-box">
 			<h4 class="heading">Description</h4>
