@@ -57,3 +57,8 @@ Route::group(['prefix' => 'member'], function () {
     Route::get('/','MemberController@index');
 });
 
+Route::group(['prefix' => 'order'], function(){
+    Route::get('/','OrderController@index');
+    Route::get('/{order}','OrderController@detailOrder');
+});
+
