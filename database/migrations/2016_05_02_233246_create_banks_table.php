@@ -28,6 +28,10 @@ class CreateBanksTable extends Migration
      */
     public function down()
     {
+        Schema::table('confirms', function ($table) {
+            $table->dropForeign('confirms_bank_id_foreign');
+            $table->dropColumn('bank_id');
+        });
         Schema::drop('banks');
     }
 }
