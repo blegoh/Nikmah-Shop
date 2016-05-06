@@ -12,13 +12,10 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $member = new Member();
-        $member->name = 'Yusuf Eka Sayogana';
-        $member->save();
-        \App\User::create([
-            'email' => 'info@yusufeka.me',
-            'password' => bcrypt('admincoeg'),
-            'member_id' => $member->id
+        \App\Admin::create([
+            'username' => 'blegoh',
+            'password' => bcrypt('blegoh'),
+            'name' => 'Yusuf Eka Sayogana'
         ]);
     }
 }
