@@ -83,24 +83,4 @@ class AuthController extends Controller
         ]);
     }
 
-    public function getLoginAdmin()
-    {
-        return view('admin.auth.login');
-    }
-
-    public function postLoginAdmin(Request $request)
-    {
-        $auth = auth()->guard('admin');
-
-        $credentials = [
-            'username' =>  $request->input('username'),
-            'password' =>  $request->input('password'),
-        ];
-
-        if ($auth->attempt($credentials)) {
-            return redirect('admin/home');
-        }
-
-        return back()->withInput()->withError();
-    }
 }
