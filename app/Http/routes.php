@@ -60,5 +60,16 @@ Route::group(['prefix' => 'member'], function () {
 Route::group(['prefix' => 'order'], function(){
     Route::get('/','OrderController@index');
     Route::get('/{order}','OrderController@detailOrder');
+    Route::get('/confirm/{order}','OrderController@confirm');
+    Route::post('/confirm/{order}','OrderController@storeConfirm');
 });
 
+Route::group(['prefix' => 'admin'],function(){
+    Route::get('/','Admin\HomeController@index');
+    Route::get('/login','Admin\AuthController@getLogin');
+    Route::post('/login','Admin\AuthController@postLogin');
+    Route::get('/home','Admin\HomeController@index');
+    Route::get('/order',function(){
+        return view('admin.order');
+    });
+});
