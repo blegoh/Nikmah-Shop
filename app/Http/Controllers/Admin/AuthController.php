@@ -9,7 +9,9 @@
 namespace App\Http\Controllers\Admin;
 
 
-class AuthController
+use App\Http\Controllers\Controller;
+
+class AuthController extends Controller
 {
     public function getLogin()
     {
