@@ -2,12 +2,7 @@
 @section('content')
 <!-- Main Container Starts -->
 	<div id="main-container" class="container">
-	<!-- Breadcrumb Starts -->
-		<ol class="breadcrumb">
-			<li><a href="index.html">Home</a></li>
-			<li class="active">Shopping Cart</li>
-		</ol>
-	<!-- Breadcrumb Ends -->
+
 	<!-- Main Heading Starts -->
 		<h2 class="main-heading text-center">
 			Shopping Cart
@@ -107,6 +102,21 @@
 						<!-- Form Starts -->
 							<!-- Form dipindah ke atas karena submit nya di tombol checkout -->
 							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="drop" id="drop">Kirim ke orang lain?
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group" id="sender">
+								<label for="inputFname" class="col-sm-3 control-label">Nama Pengirim :</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="sender" id="inputFname" placeholder="Nama Pengirim">
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="inputFname" class="col-sm-3 control-label">Nama Penerima :</label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="name" id="inputFname" placeholder="Nama Penerima">
@@ -195,6 +205,19 @@
 @endsection
 
 @section('js')
+	<script>
+	if($('#drop').is(':checked')){
+		$('#sender').show();
+	} else {
+		$('#sender').hide();
+	}
+	$('#drop').change(function () {
+		if($(this).is(':checked')){
+			$('#sender').show();
+		} else {
+			$('#sender').hide();
+		}
+	});
 	$("#prov").change(function() {
 		$.ajax({
 			url: "/ajax/kabupaten/"+$("#prov").val(),
@@ -210,4 +233,5 @@
 			$("#total").html(parseInt(data)+{{Cart::getTotal()}});
 		});
 	});
+	</script>
 @endsection
