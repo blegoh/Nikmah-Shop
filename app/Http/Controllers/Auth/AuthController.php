@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Member;
 use App\User;
+use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -53,6 +54,9 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'phone' => 'required|numeric',
+            'city' => 'required',
+            'address' => 'required',
         ]);
     }
 
@@ -67,6 +71,9 @@ class AuthController extends Controller
 
         $member = new Member();
         $member->name = $data['name'];
+        $member->phone = $data['phone'];
+        $member->city = $data['city'];
+        $member->address = $data['address'];
         $member->save();
 
         return User::create([
@@ -74,5 +81,26 @@ class AuthController extends Controller
             'member_id' => $member->id,
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function getLoginAdmin()
+    {
+        return view('admin.auth.login');
+    }
+
+    public function postLoginAdmin(Request $request)
+    {
+        $auth = auth()->guard('admin');
+
+        $credentials = [
+            'username' =>  $request->input('username'),
+            'password' =>  $request->input('password'),
+        ];
+
+        if ($auth->attempt($credentials)) {
+            return redirect('admin/home');
+        }
+
+        return back()->withInput()->withError();
     }
 }
