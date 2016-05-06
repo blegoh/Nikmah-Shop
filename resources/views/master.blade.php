@@ -37,16 +37,13 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond./js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/fav-144.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/fav-114.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/fav-72.png">
     <link rel="apple-touch-icon-precomposed" href="images/fav-57.png">
     <link rel="shortcut icon" href="/images/fav.png">
-    <style>
-        @yield('css');
-    </style>
+    @yield('css')
 </head>
 <body>
 <!-- Header Section Starts -->
@@ -325,8 +322,6 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-<script>
-    @yield('js')
-</script>
+@yield('js')
 </body>
 </html>
