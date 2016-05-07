@@ -86,7 +86,7 @@
 					@if($i == 1 || $i == 5 || $i == 10)
 						<div class="col-md-4 col-sm-6">
 							<div class="product-col">
-								<div class="image">
+								<div class="image nailthumb-container">
 									<img src="{{ $product->photo }}" alt="product" class="img-responsive" />
 								</div>
 								<div class="caption">
