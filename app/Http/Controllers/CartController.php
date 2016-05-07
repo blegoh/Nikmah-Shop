@@ -67,25 +67,23 @@ class CartController extends Controller
     public function test()
     {
         $client = new Client();
-        $response = $client->post('http://api.rajaongkir.com/starter/cost',[
-            'headers' => [
-                'key' => '7cfb344ccb0eff9d6c5dfe721032133e'
-            ],
-            'form_params' => [
-                'origin' => '317',
-                'destination' => '160',
-                'weight' => 2000,
-                'courier' => 'jne'
+        $response = $client->request('GET', 'http://api.rajaongkir.com/starter/city',[
+            'query' => [
+                'key' => '7cfb344ccb0eff9d6c5dfe721032133e',
+                'id' => ' 	160'
             ]
         ]);
         $hasil = \GuzzleHttp\json_decode($response->getBody()->getContents());
-        print_r($hasil->rajaongkir->results[0]->costs[1]->cost[0]->value);
+        print_r($hasil->rajaongkir->results->city_name);
     }
 
     public function checkout(Request $request)
     {
         $order = new Order();
         $order->member_id = Auth::user()->member->id;
+        if ($request->input('drop') == 'on'){
+            $order->sender_name = $request->input('sender');
+        }
         $order->receiver_name = $request->input('name');
         $order->receiver_phone = $request->input('telp');
         $order->city = $request->input('city');
@@ -96,7 +94,9 @@ class CartController extends Controller
             $detail = new OrderDetail();
             $detail->product_link = Crypt::decrypt($item->id);
             $detail->quantity = $item->quantity;
-            $detail->unitPrice = $item->price;
+            $detail->unit_price = $item->price;
+            $detail->weight = $item->weight;
+            $detail->order_id = $order->id;
             $detail->save();
         }
         Cart::clear();
