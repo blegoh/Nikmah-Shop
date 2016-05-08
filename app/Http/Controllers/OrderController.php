@@ -49,4 +49,12 @@ class OrderController extends Controller
         $request->file('photo')->move('images/confirms/', $fileName);
         return redirect('/order');
     }
+
+    public function terkirim($order)
+    {
+        $order = Order::find($order);
+        $order->shipping_status = 'shipped';
+        $order->update();
+        return back();
+    }
 }
