@@ -15,15 +15,15 @@
 					<img src="images/misc/about-image1.jpg" alt="image" class="img-responsive" />
 				</div>
 				<div class="col-sm-8">
-					<h3>Joe Doejuli</h3>
-					<h4>Manager</h4>
+					<h3>Sholihatun Nikmah</h3>
+					<h4>Founder</h4>
 					<ul class="list-unstyled list-inline sm-links">
 						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 						<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
 					</ul>
 					<p>
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software.
+						Sholihatun Nikmah adalah pendiri bisnis NIKMAH SHOES, NIKMAH SHOES berdiri sejak tahun 2015, nikmah shoes adalah bisnis online yang menyediakan berbagai macam sepatu dengan harga yang terjangkau tetapi kualitas bagus. Terdapat sepatu flat, wedges dan heells. Insha Allah amanah, bisa dipercaya. Barang diantar kurir JNE sampai ke rumah sesuai alamat masing-masing.
 					</p>
 				</div>
 			</div>
