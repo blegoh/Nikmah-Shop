@@ -56,20 +56,20 @@
                       @elseif($order->is_paid == 0 && $order->confirms->count() > 0)
                         <span class="label label-warning">Sudah Konfirmasi</span>
                       @elseif($order->is_paid == 1 && $order->shipping_status == 'wait' )
-                        <span class="label label-info">Sudah Konfirmasi</span>
+                        <span class="label label-info">Terkonfirmasi</span>
                       @elseif($order->shipping_status == 'shipping')
-                        <span class="label label-info">Sudah Konfirmasi</span>
+                        <span class="label label-info">Pengiriman</span>
                       @elseif($order->shipping_status == 'shipped')
-                        <span class="label label-success">Sudah Konfirmasi</span>
+                        <span class="label label-success">Terkirim</span>
                       @endif
                     </td>
                     <td class="text-right">{{$order->details->sum('total') + $order->ongkir}}</td>
                     <td class="text-center">{{$order->created_at}}</td>
                     <td class="text-center">
                       <div role="group" aria-label="Basic example" class="btn-group btn-group-sm">
-                        <button type="button" class="btn btn-outline btn-primary"><i class="ti-eye"></i></button>
-                        <button type="button" class="btn btn-outline btn-success"><i class="ti-pencil"></i></button>
-                        <button type="button" class="btn btn-outline btn-danger"><i class="ti-trash"></i></button>
+                        <a href="/admin/order/{{$order->id}}">
+                          <button type="button" class="btn btn-outline btn-primary"><i class="ti-eye"></i></button>
+                        </a>
                       </div>
                     </td>
                   </tr>
