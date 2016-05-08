@@ -15,27 +15,23 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/about', 'HomeController@about');
 
-Route::get('/product/{link}','ProductController@detail');
+Route::group(['prefix' => 'product'], function(){
+    Route::get('/all','ProductController@all');
+    Route::get('/{link}','ProductController@detail');
+    Route::get('/all/{page}','ProductController@all');
+    Route::get('/category/{category}','ProductController@category');
+    Route::get('/category/{category}/{page}','ProductController@category');
+});
 
-Route::get('/products','ProductController@all');
-
-Route::get('/products/{page}','ProductController@all');
-
-Route::get('/products/category/{category}','ProductController@category');
-
-Route::get('/products/category/{category}/{page}','ProductController@category');
-
-Route::get('/cart','CartController@index');
+Route::group(['prefix' => 'cart'], function(){
+    Route::get('/','CartController@index');
+    Route::post('/add','CartController@add');
+    Route::get('/addToCart/{link}','CartController@addToCart');
+    Route::post('/update/{link}','CartController@update');
+    Route::get('/delete/{link}','CartController@delete');
+});
 
 Route::get('/test','CartController@test');
-
-Route::post('/cart/add','CartController@add');
-
-Route::get('/cart/addToCart/{link}','CartController@addToCart');
-
-Route::post('/cart/update/{link}','CartController@update');
-
-Route::get('/cart/delete/{link}','CartController@delete');
 
 Route::get('/checkout',function(){
     return redirect('/cart');
@@ -47,11 +43,10 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/ajax/kabupaten/{province}','AjaxController@kabupaten');
-
-Route::get('/ajax/cost/{city}','AjaxController@cost');
-
-Route::get('/orders','OrderController@index');
+Route::group(['prefix' => 'ajax'], function(){
+    Route::get('/kabupaten/{province}','AjaxController@kabupaten');
+    Route::get('/cost/{city}','AjaxController@cost');
+});
 
 Route::group(['prefix' => 'member'], function () {
     Route::get('/','MemberController@index');
@@ -62,6 +57,7 @@ Route::group(['prefix' => 'order'], function(){
     Route::get('/{order}','OrderController@detailOrder');
     Route::get('/confirm/{order}','OrderController@confirm');
     Route::post('/confirm/{order}','OrderController@storeConfirm');
+    Route::post('/terkirim/{order}','OrderController@terkirim');
 });
 
 Route::group(['prefix' => 'admin'],function(){
@@ -69,7 +65,11 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('/login','Admin\AuthController@getLogin');
     Route::post('/login','Admin\AuthController@postLogin');
     Route::get('/home','Admin\HomeController@index');
-    Route::get('/order',function(){
-        return view('admin.order');
-    });
+    Route::get('/order','Admin\OrderController@index');
+    Route::get('/order/{order}','Admin\OrderController@detail');
+    Route::post('/order/{order}','Admin\OrderController@update');
+    Route::get('/order/{order}/confirm','Admin\OrderController@confirm');
+    Route::post('/order/{order}/confirm','Admin\OrderController@updateConfirm');
+    Route::get('/member','Admin\MemberController@index');
+    Route::get('/member/{member}','Admin\MemberController@detail');
 });
