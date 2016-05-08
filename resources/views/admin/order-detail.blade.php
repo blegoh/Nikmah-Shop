@@ -5,35 +5,29 @@
         <div class="page-content container-fluid">
             <div class="widget">
                 <div class="widget-heading">
-                    <h3 class="widget-title">Order List</h3>
+                    <h3 class="widget-title">Order Detail</h3>
                 </div>
                 <div class="widget-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="txtOrderID">Order ID</label>
-                                    <input id="txtOrderID" type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="ddlStatus">Order Status</label>
-                                    <select id="ddlStatus" class="form-control">
-                                        <option value="*"></option>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="txtOrderID">Order ID</label>
-                                    <input id="txtOrderID" type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="mb-15 btn btn-outline btn-success">Filter</button>
-                    </form>
+                    <dl class="dl-horizontal">
+                        @if($order->sender_name != '')
+                            <dt>Nama Pengirim :</dt>
+                            <dd>{{$order->sender_name }}</dd>
+                        @endif
+                        <dt>Nama Penerima :</dt>
+                        <dd>{{$order->receiver_name}}</dd>
+                        <dt>Telp Penerima :</dt>
+                        <dd>{{$order->receiver_phone}}</dd>
+                        <dt>Kota :</dt>
+                        <dd>{{$order->city()}}</dd>
+                        <dt>Alamat :</dt>
+                        <dd>{{$order->ship_address}}</dd>
+                        <dt>Ongkir :</dt>
+                        <dd>{{$order->ongkir}}</dd>
+                        @if($order->shipping_status != 'wait')
+                            <dt>Resi :</dt>
+                            <dd>{{$order->nomer_resi}}</dd>
+                        @endif
+                    </dl>
                     <table id="order-list" cellspacing="0" width="100%" class="table table-hover dt-responsive nowrap">
                         <thead>
                         <tr>
@@ -45,7 +39,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($orders as $order)
+                        @foreach($order->details as $detail)
                             <tr>
                                 <td>{{$detail->product()->name}}</td>
                                 <td><img src="{{$detail->product()->photo}}" width="50px"></td>
@@ -56,6 +50,25 @@
                         @endforeach
                         </tbody>
                     </table>
+                    @if($order->is_paid == 0 && $order->confirms->count() == 0)
+                        <h3>Member Belum Konfirmasi Pembayaran</h3>
+                    @elseif($order->is_paid == 0 && $order->confirms->count() > 0)
+                        <h3>Sudah Konfirmasi</h3>
+                        <a href="/admin/order/{{$order->id}}/confirm" class="btn btn-info">Validasi</a>
+                    @elseif($order->is_paid == 1 && $order->shipping_status == 'wait')
+                        <form class="form-inline" action="/admin/order/{{$order->id}}" role="form" method="post">
+                            {!! csrf_field() !!}
+                            <div class="form-group">
+                                <label for="email">Nomer Resi:</label>
+                                <input type="text" class="form-control" id="resi" name="resi">
+                            </div>
+                            <button type="submit" class="btn btn-info">Update</button>
+                        </form>
+                    @elseif($order->shipping_status == 'shipping')
+                        <h3>Proses Pengiriman</h3>
+                    @elseif($order->shipping_status == 'shipped')
+                        <h3>Terkirim</h3>
+                    @endif
                 </div>
             </div>
         </div>
