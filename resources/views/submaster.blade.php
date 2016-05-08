@@ -8,7 +8,7 @@
                 <h3 class="side-heading">Categories</h3>
                 <div class="list-group categories">
                     @foreach($categories as $category)
-                        <a href="/products/category/{{$category->category_id}}" class="list-group-item">
+                        <a href="/product/category/{{$category->category_id}}" class="list-group-item">
                             <i class="fa fa-chevron-right"></i>
                             {{$category->name}}
                         </a>
