@@ -22,8 +22,17 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::all();//
         return view('admin.order',compact('orders'));
+    }
+
+    public function update($order,Request $request)
+    {
+        $order = Order::find($order);
+        $order->shipping_status = 'shipping';
+        $order->nomer_resi = $request->input('resi');
+        $order->update();
+        return redirect('/admin/order');
     }
 
     public function detail($order)
