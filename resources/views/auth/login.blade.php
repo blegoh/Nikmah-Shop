@@ -2,12 +2,6 @@
 @section('content')
 <!-- Main Container Starts -->
 	<div id="main-container" class="container">
-	<!-- Breadcrumb Starts -->
-		<ol class="breadcrumb">
-			<li><a href="index.html">Home</a></li>
-			<li class="active">Register</li>
-		</ol>
-	<!-- Breadcrumb Ends -->
 	<!-- Main Heading Starts -->
 		<h2 class="main-heading text-center">
 			Login or create new account
@@ -24,7 +18,7 @@
 						</div>
 						<div class="panel-body">
 							<p>
-								Please login using your existing account
+								Silakan login dengan akun yang sudah dibuat
 							</p>
 						<!-- Login Form Starts -->
 							<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
@@ -62,7 +56,7 @@
 									<div class="col-md-6 col-md-offset-4">
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="remember"> Remember Me
+												<input type="checkbox" name="remember"> Ingat saya
 											</label>
 										</div>
 									</div>
@@ -74,7 +68,7 @@
 											Login
 										</button>
 
-										<a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+										<a class="btn btn-link" href="{{ url('/password/reset') }}">Lupa password?</a>
 									</div>
 								</div>
 							</form>
@@ -93,7 +87,7 @@
 						</div>
 						<div class="panel-body">
 							<p>
-								Registration allows you to avoid filling in billing and shipping forms every time you checkout on this website
+								Silakan registrasi terlebih dahulu jika belum memiliki akun
 							</p>
 							<a href="{{ url('/register') }}" class="btn btn-black">
 								Register
